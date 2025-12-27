@@ -1,0 +1,19 @@
+{
+  "name": "@gstore/core",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --minify",
+    "dev": "tsup src/index.ts --dts --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsup": "^8.2.4"    
+  }
+}
+
