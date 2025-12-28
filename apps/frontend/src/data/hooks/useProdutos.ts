@@ -18,10 +18,15 @@ export default function useProdutos() {
     const obterProdutoPorId = useCallback(
 
     async function  obterProdutoPorId(id: number): Promise<Produto | null> {
-        const resp = await fetch(`${BASE_URL}/produtos/${id}`);
-        const produto = await resp.json();
-        // return produto ?? null;
-        return produto ?? null;
+        try {
+            const resp = await fetch(`${BASE_URL}/produtos/${id}`);
+            const produto = await resp.json();
+            // return produto ?? null;
+            return produto ?? null;            
+        } catch (error) {
+            console.error('Erro ao obter produto por ID:', error);
+            return null;
+        }
     }, []);
 
     useEffect(() => {

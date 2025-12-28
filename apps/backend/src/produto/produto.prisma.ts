@@ -6,6 +6,14 @@ import { PrismaProvider } from 'src/db/prisma.provider';
 export class ProdutoPrisma {
     constructor(readonly prisma: PrismaProvider) {}
 
+    async salvar(produto: Produto): Promise<void> {
+        await this.prisma.produto.upsert({
+            where: { id: produto.id ?? -1 },
+            update: produto,
+            create: produto,
+        });
+    }
+
     async obter(): Promise<Produto[]> {
         return this.prisma.produto.findMany() as any;
     }
@@ -14,5 +22,9 @@ export class ProdutoPrisma {
         const produto = await this.prisma.produto.findUnique({where: { id }});
 
         return (produto as any) ?? null;
+    }
+
+    async deletar(id: number): Promise<void> {
+        await this.prisma.produto.delete({where: { id }});
     }
 }

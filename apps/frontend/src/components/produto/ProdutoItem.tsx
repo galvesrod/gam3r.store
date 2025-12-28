@@ -3,6 +3,7 @@ import { Produto } from "@gstore/core";
 import { IconShoppingCartPlus } from "@tabler/icons-react"
 import Image from "next/image"
 import Link from "next/link"
+import NotaReview from "../shared/NotaReview";
 
 interface ProdutoItemProps {
     produto: Produto
@@ -19,6 +20,9 @@ export default function ProdutoItem(props: ProdutoItemProps) {
                 max-w-87.5
                 '
             href={`/produtos/${produto.id}`} >
+                <div className="absolute flex justify-end top-2.5 right-2.5">
+                    <NotaReview nota={produto.nota}/>    
+                </div>
                 <div className="h-48 w-full relative">
                     <Image 
                         className="object-contain"
